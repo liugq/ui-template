@@ -1,0 +1,698 @@
+/*变量*/
+
+//color form bootstrap 4 baging
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #007bff !default; //#5db2ff这个也挺好看
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+//color form bootstrap 4 end
+$borderColor:$gray-200;
+//$borderColor:#FFF;
+//$backgroundColor:#EDF2FC;
+$backgroundColor:transition;
+
+$padding:.5rem;
+$padding-left-right: $padding;
+$padding-top-bottom: .375rem;
+$slide-width:12rem;
+$height-1rem:1rem;
+$height-2rem:2rem;
+$height-2dot5rem:2.5rem;
+$height-3rem:3rem;
+$height-4rem:4rem;
+$height-5rem:5rem;
+$height-6rem:6rem;
+
+
+/*变量 end*/
+
+
+/*mixin*/
+
+@mixin transition($param) {
+  -webkit-transition: $param;
+  -moz-transition: $param;
+  -ms-transition: $param;
+  -o-transition: $param;
+  transition: $param;
+}
+
+@mixin transform($param) {
+  -webkit-transform: $param;
+  -moz-transform: $param;
+  -ms-transform: $param;
+  -o-transform: $param;
+  transform: $param;
+}
+@mixin box-shadow
+{
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.3);
+}
+
+
+/*mixin end*/
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 14px;
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+
+  /* 竖线 */
+  .l-v-line{
+    //height: 90%;
+    border-right: solid 1px $borderColor !important;
+    width: 1px;
+  }
+  /* 横线 */
+  .l-h-line{
+    //height: 90%;
+    border-bottom: solid 1px $borderColor !important;
+    height: 1px;
+  }
+
+/*Flex布局 begin*/
+
+.l-app {
+  max-width: 100%;
+  min-height: 100%;
+
+  .l-header,
+  .l-footer {
+    //height: 3rem;
+    //min-height: 3rem;
+    @media (max-width: 1440px) {
+      height: 2.5rem;
+      min-height: 2.5rem;
+    }
+    @media (min-width: 1441px) {
+      height: 3rem;
+      min-height: 3rem;
+    }
+    padding: 0;
+    background-color: $backgroundColor;
+  }
+
+  .l-header {
+    border-bottom: solid 1px $borderColor; //.l-header下的bootstrap navbar样式调整
+    .navbar {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      justify-content: space-between;
+    }
+  }
+  .l-main {
+    @media (max-width: 1440px) {
+      /* min-height: -webkit-calc(100% - 5rem);
+        min-height: -moz-calc(100% - 5rem);
+        min-height: -ms-calc(100% - 5rem);
+        min-height: -o-calc(100% - 5rem); */
+      min-height: calc(100vh - 5rem);
+    }
+    @media (min-width: 1441px) {
+      /* min-height: -webkit-calc(100% - 6rem);
+          min-height: -moz-calc(100% - 6rem);
+          min-height: -ms-calc(100% - 6rem);
+          min-height: -o-calc(100% - 6rem); */
+      min-height: calc(100vh - 6rem);
+    }
+    align-items: stretch;
+    .l-aside {
+      //border-right: solid 1px $borderColor;
+      background-color: $backgroundColor;
+      width: $slide-width;
+      flex-grow: 0;
+      flex-shrink: 0; //flex:0 0 $slide-width;
+      overflow: auto;
+      @media (max-width: 1440px) {
+        min-height: calc(100vh - 5rem);
+      }
+      @media (min-width: 1441px) {
+        min-height: calc(100vh - 6rem);
+      }
+    }
+    .l-container {
+      flex: 1; //flex-grow:1;flex-shrink:1;flex-basis:auto;
+      overflow: hidden;
+      min-width: 0;
+      min-height: 0;
+    }
+  }
+  .l-footer {
+    border-top: solid 1px $borderColor;
+    padding: 0 $padding-left-right;
+    bottom: 0;
+  }
+  .l-main-container {
+    margin: 0;
+    padding: $padding-top-bottom $padding-left-right;
+  } 
+  /*vue动画*/
+  .l-slide-left-leave-active,
+  .l-slide-left-enter-active {
+    @include transition(all .2s);
+  }
+  .l-slide-left-leave-to,
+  .l-slide-left-enter {
+    margin-left: -$slide-width;
+  }
+  .l-card-leave-active,
+  .l-card-enter-active{
+    //@include transition(all .2s);
+    @include transition(all .2s ease-in-out);
+  }
+  .l-card-leave-to,
+  .l-card-enter {
+    height:0;
+    opacity: 0;
+     //bottom: 0;
+     //opacity: 0;
+     //top:-100px;
+     //transform: scaleY(.5);
+     //transform:translate(0,-1000px);
+  }
+
+  /*结合bootstrap的navbar 页头布局
+.navbar display:flex,justify-content:space-between;
+.l-navbar-l:navbar的左边
+.l-navbar-b 放置品牌或logo
+.l-navbar-m 头部的主要内容区或中间区域
+.l-navbar-r:navbar的右边
+*/
+  .l-navbar-l,
+  .l-navbar-r {
+    display: inherit;
+    height: 100%;
+    padding: 0 0;
+  }
+  .l-navbar-l {
+    align-items: center;
+    justify-content: flex-start;
+    .l-navbar-b,
+    .l-navbar-m {
+      display: inherit;
+      height: 100%;
+      padding: 0 $padding-left-right;
+    }
+    a,
+    button {
+      color: inherit;
+    }
+  
+    @media (min-width: 768px) {
+      .l-navbar-b {
+        width: $slide-width;
+        //border-right: solid 1px $borderColor;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+    @media (max-width: 767px) {
+      .l-navbar-b {
+        width: $slide-width / 2;
+        //border-right: solid 1px $borderColor;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+    .l-navbar-b-small {
+      width: $slide-width / 2;
+    }
+    .l-navbar-m {
+      align-items: center;
+    }
+  }
+  .l-navbar-r {
+    padding: 0;
+    /*bootstrap 按钮点击样式修改*/
+    .btn:focus,
+    .btn.focus {
+      //box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.25);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.25);
+    }
+  }
+  .l-navbar-r .btn {
+    border-radius: 0;
+    //border-right-color: #FFF !important;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
+  }
+}
+
+
+
+/*Flex布局 end*/
+
+//响应式布局
+
+/*
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+//-------------------------------------------- 
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575px) {}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767px) {}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991px) {}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199px) {}
+*/
+
+//响应式布局 end
+
+/*结合bootstrap的navbar 布局页头 end*/
+
+
+/*fa 字体相关样式*/
+
+.fa-icon--right {
+  padding-left: .3rem;
+}
+
+.fa-icon--left {
+  padding-right: .3rem;
+}
+
+.fa-icon--right-2x {
+  padding-left: .6rem;
+}
+
+.fa-icon--left-2x {
+  padding-right: .6rem;
+}
+
+.fa-icon--right-3x {
+  padding-left: 1rem;
+}
+
+.fa-icon--left-3x {
+  padding-right: 1rem;
+}
+
+
+
+/*fa 字体相关样式 end*/
+
+
+/*bootstrap 调整*/
+
+
+/*对bootstrap的card添加紧凑模式*/
+
+.l-card-compack {
+  border: 0;
+  .card-header,
+  .card-footer {
+    padding: 1px 0;
+    //line-height: 2rem; //max-height: 2.5rem;
+    //min-height: 2rem;
+    vertical-align: bottom;
+    background-color: transparent;
+    
+  }
+  .card-header{
+    position:relative;
+    .float-left{
+      position:absolute;
+      bottom:0px;
+    }
+    .card-query{
+      padding:$padding-top-bottom $padding-left-right;
+      .card-query-title{
+        padding-bottom:$padding-top-bottom;
+        font-weight: 700 !important;
+      }
+    }
+  }
+  .card-body {
+    padding: .5rem 0; //padding-bottom: .5rem;
+  }
+}
+
+.l-modal-compack {
+  .modal-dialog{
+    margin:3.5rem auto;
+  }
+  .modal-header,
+  .modal-footer {
+    padding: .5rem 1rem;
+  }
+}
+
+.l-list-item,
+.l-list-item-l,
+.l-list-item-r,
+.l-list-item-b,
+.l-list-item-n {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-radius: 0;
+  margin-bottom: 1px;
+  padding-top: .3rem;
+  padding-bottom: .3rem;
+  label{
+    margin-bottom: unset;
+  }
+}
+.l-list-item,
+.l-list-item-n {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+.l-list-item-l{
+  border-left-width: .15rem;
+  border-right-width: 0;
+}
+.l-list-item-r{
+  border-right-width: .15rem;
+  border-left-width: 0;
+}
+.l-list-item-b{
+  border-left-width: .15rem;
+  border-right-width: .15rem;
+}
+
+.l-list-item:last-child,
+.l-list-item-l:last-child,
+.l-list-item-r:last-child,
+.l-list-item-b:last-child,
+.l-list-item-n:last-child {
+  margin-bottom: 0;
+}
+
+.l-list-item:focus,
+.l-list-item:hover, 
+.l-list-item-l:focus,
+.l-list-item-l:hover,
+.l-list-item-r:focus,
+.l-list-item-r:hover,
+.l-list-item-b:focus,
+.l-list-item-b:hover{
+  color: $white;
+  background-color: $success !important;
+  /*element ui el-checkbox 颜色*/
+  .el-checkbox__label{
+      color: $white !important;
+    }
+}
+.l-box-shadow{
+  @include box-shadow()
+}
+
+
+/*bootstrap 按钮 样式修改,主要是修改上下左右空白，不然按钮太大*/
+
+.btn {
+  padding: $padding-top-bottom $padding-left-right;
+  line-height: 1rem;
+  vertical-align: inherit;
+  //cursor:hand;
+}
+/* .l-col{
+  padding-left:  $padding-left-right;
+  padding-right: $padding-left-right;
+} */
+.l-btn{
+  padding:1px 3px;
+}
+.btn-group-sm>.btn,
+.btn-sm {
+  padding: .25rem .5rem;
+}
+
+.dropdown-menu {
+  padding: 0;
+  border:0;
+
+  .dropdown-item {
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+  }
+  .dropdown-divider {
+    margin: 1px 0;
+  }
+  .dropdown-item:focus,
+  .dropdown-item:hover {
+    color: $white;
+    background-color: $success !important;
+    /*element ui el-checkbox 颜色*/
+    .el-checkbox__label{
+      color: $white !important;
+    }
+  }
+}
+.modal-content{
+  border-width: 0;
+  @include box-shadow();
+}
+/*bootstrap 调整 end*/
+
+/*element-UI 调整 包裹在 .l-el-compack */
+
+/*--------------------element ui theme-----------------------------*/
+/* 改变主题色变量 */
+$--color-primary: $primary;
+$--color-white: $white;
+$--color-black: $black;
+$--color-success: $success;
+$--color-warning: $warning;
+$--color-danger: $danger;
+$--color-info: $info;
+
+//$--input-small-font-size: 1rem !default;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+/*-------------------------------------------------*/
+
+/*饿了么按钮 样式修改,主要是修改上下左右空白，不然按钮太大*/
+
+.l-el-compack {
+  .el-button {
+    padding: $padding-top-bottom $padding-left-right;
+  }
+  .el-menu {
+    border-right: 0;
+    background-color: transparent;
+  }
+  .el-menu-item,
+  .el-submenu__title,
+  .el-submenu .el-menu-item {
+    height: $height-2dot5rem;
+    line-height: $height-2dot5rem;
+    padding: 0 $padding-left-right;
+    min-width: auto;
+    color: inherit; //vertical-align: none;
+  }
+  .el-menu-item:focus,
+  .el-menu-item:hover,
+  .el-submenu__title:focus,
+  .el-submenu__title:hover {
+    color: $primary;
+  }
+
+  .el-menu-item i,
+  .el-submenu__title i {
+    color: inherit;
+  }
+
+  .el-submenu__title *,
+  .el-menu-item * {
+    vertical-align: inherit;
+  }
+  .el-form-item__error {
+    top: auto;
+  }
+  .el-form-item__label{
+    border-right:2px solid $white;
+    background-color:$gray-100;
+    color: unset;
+    border-radius:.25rem;
+  }
+
+  .el-switch{
+    vertical-align: text-bottom;
+      .el-switch__core{
+        vertical-align:unset;
+      }
+    }
+
+  .el-form-item,
+  .el-form-item--mini.el-form-item,
+  .el-form-item--small.el-form-item {
+    margin-bottom: .5rem;
+    //解决 el-switch在el-form-item 和 label对不起的问题 begin
+    .el-switch{
+    vertical-align: text-bottom;
+      .el-switch__core{
+        vertical-align:unset;
+      }
+    }
+      .el-input--small{
+      font-size: 1rem;
+    } 
+    //解决 el-switch在el-form-item 和 label对不起的问题 end
+  }
+  .el-tabs__header {
+    margin-bottom: 1px;
+  }
+  .el-tabs--border-card>.el-tabs__content {
+    padding-top: 1px;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0
+  }
+  .l-el-table-compack {
+    .el-table__header-wrapper{
+      .el-table__header tr:hover > th{
+        background-color:$light;
+      }
+    }
+    .el-table__footer-wrapper {
+      .el-table__footer {}
+    }
+    table {
+      border-collapse: separate;
+      color: $black;
+      thead {
+        color: $black;
+      }
+      th,
+      td {
+        padding: .25rem 0 !important;
+        border-right: 1px solid #FFF !important;
+        background-clip:padding-box !important;
+      }
+      .cell{
+        label{
+          margin-bottom: unset;
+        }
+      }
+    } //color: transparent;
+    /* td, th {
+    padding:.35rem 0;
+    background-clip: padding-box !important;
+  }*/
+    .no-empty{
+      .el-table__empty-block{
+        display: none;
+      }
+    }
+  }
+  .l-cell-compack {
+    padding: .25rem 0 !important;
+    border-right: 1px solid #FFF !important; 
+    background-clip:padding-box !important;
+  }
+  .cell-input{
+    .cell{
+      padding:0 0;
+    }
+  }
+  .el-breadcrumb {
+    padding-bottom: .2rem
+  }
+
+}
+
+/* date picker 样式调整*/
+ .el-date-editor.el-input,
+ .el-date-editor.el-input__inner {
+   width: unset;
+ }
+.el-date-picker {
+   width: 294px;
+   @include box-shadow();
+   line-height: 1.5rem;
+
+ .el-date-picker__header {
+   margin: 2px 0 !important;
+ }
+
+ .el-picker-panel__content {
+   margin: 0;
+ }
+
+ .el-picker-panel__content {
+   margin: 0;
+ }
+ .el-picker-panel__footer {
+   margin-bottom: 1px;
+   padding: 1px 4px 0 0;
+ }
+ .el-date-picker__time-header{
+    padding: 2px;
+ }
+.el-date-table {
+    td div {
+      height: 1.5rem;
+  }
+  th{
+    text-align: center;
+    background-color:$light;
+    padding:2px;
+  }
+}
+}
+/*element-UI 调整 end*/
