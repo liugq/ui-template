@@ -8,7 +8,7 @@ vue2 + bootstrap4 + element-ui + vue-cli3
 * 安装cnpm:	npm install -g cnpm --registry=https://registry.npm.taobao.org
 * 安装vue-cli3:	npm install -g @vue/cli
 * 克隆项目：git clone git@github.com:liugq/ui-template.git
-
+* 进入到项目目录：cd ui-template
 ## 项目安装
 ```
 npm install
