@@ -1,5 +1,6 @@
 # ui-template
-vue2 + bootstrap4 + element-ui
+vue2 + bootstrap4 + element-ui + vue-cli3
+支持多页面配置
 
 
 ## 准备
