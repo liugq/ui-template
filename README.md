@@ -17,12 +17,12 @@ npm install
 cnpm install
 ```
 
-### Compiles and hot-reloads for development
+### 开发模式下 编译 & 热加载 
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 生产模式下 编译 & 压缩文件
 ```
 npm run build
 ```
